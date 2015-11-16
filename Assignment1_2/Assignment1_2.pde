@@ -27,11 +27,11 @@ void setup()
   float horizontalRange = width - (border * 2.0f);
   float lineWidth = horizontalRange / (table.getRowCount());
 
-  float dataRange = map(table.getRowCount(), 0, table.getRowCount(), 0, 2651.52);
+  float dataRange = map(table.getRowCount(), 0, table.getRowCount(), 0, 2767);
   float verticaleRange = height - (border * 2.0f);
   float verticleScale = verticaleRange / dataRange; 
 
-  for (int i = 0; i < table.getRowCount () - 1; i++)
+  for (int i = 0; i < table.getRowCount() - 1; i++)
   {
     float x1 = border + (i * lineWidth);
     float y1_1 = (height - border) - table.getInt(i, "North America") * verticleScale;
@@ -88,21 +88,24 @@ void setup()
     line(x1, y1_12, x2, y2_12);
     stroke(248, 248, 255);
   }//End for
+  
+  println(border, width - border);
+
 
   line(border, height - border, width - border, height - border);
   line(border, height - border, border, border);
 
-  for (int i = 0; i < table.getRowCount(); i += 5)
+  for (float i = 0; i < table.getRowCount(); i += 5)
   {
     float x = border + (i * lineWidth);
     float y = height - border;
     float tick = border * 0.1f;
     line(x, y, x, y + tick);
     textAlign(CENTER, CENTER);
-    text((int)map(i, 0, table.getRowCount(), 1700, 2100), x, y + (border * 0.5));
+    text((int)map(i, 0, table.getRowCount() - 1, 1700, 2100), x, y + (border * 0.5));
   }//End for
 
-  for (int i = 0; i < table.getRowCount (); i += 5)
+  for (int i = 0; i < table.getRowCount() + 1; i += 1)
   {
     float x = border;
     float y = height - (border + (i * lineWidth));
@@ -110,7 +113,7 @@ void setup()
     line(x, y, x - tick, y);
     textAlign(RIGHT, BOTTOM);
     textSize(10);
-    text((int)map(i, 0, table.getRowCount(), 0, 2651.52), x - (border * 0.2), y + (border * 0.15));
+    text((int)map(i, 0, table.getRowCount() - 1, 0, 2700), x - (border * 0.2), y + (border * 0.15));
   }//End for
 }//End setup()
 
