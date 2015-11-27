@@ -1,4 +1,5 @@
 PShape world;
+
 String[] Africa = {
   "DZ", "AO", "BJ", "BW", "BF", "BI", "CM", "CF", 
   "TD", "CD", "CG", "CI", "DJ", "EG", "EH", "GQ", "ER", "ET", 
@@ -16,6 +17,17 @@ String[] India = {
 String[] Korea_Japan = {
   "KP", "KR", "JP"
 };
+String[] southeastAsia = {
+  "BD", "BN", "BT", "KH", "TL", "ID", "LA", "LK", 
+  "MY", "MM", "NP", "PH", "TH", "TW", "VN"
+};
+String[] Russia_CentralAsia = {
+  "RU", "KZ", "KG", "TJ", "TM", "UZ"
+};
+String[] middleEast = {
+  "CY", "IR", "IQ", "IL", "JO", "KW", "LB", "OM", 
+  "QA", "SA", "SY", "AE", "YE", "PK", "AF"
+};
 String[] centralAmerica = {
   "BZ", "CR", "SV", "GT", "HN", "NI", "PA"
 }; 
@@ -29,6 +41,9 @@ String[] southAmerica = {
   "FK", "PY", "PE", "SR", "TT", "UY", "VE"
 };
 
+String[] Oceania = {
+  "AU", "FJ", "NZ", "PG", "SB", "VU", "NC"
+};
 
 void setup()
 {
@@ -44,10 +59,14 @@ void draw()
   regionColouring(India, color(125, 125, 125));
   regionColouring(China, color(255, 0, 0));
   regionColouring(Korea_Japan, color(0, 0, 255));
+  regionColouring(southeastAsia, color(255, 125, 0));
+  regionColouring(Russia_CentralAsia, color(125, 0, 255));
+  regionColouring(middleEast, color(255, 0, 125));
   regionColouring(centralAmerica, color(125, 0, 0));
   regionColouring(northAmerica, color(0, 255, 0));
   regionColouring(southAmerica, color(125, 255, 125));
   regionColouring(Africa, color(255, 0, 255));
+  regionColouring(Oceania, color(0, 125, 255));
 }
 
 void regionColouring(String region[], int c)
