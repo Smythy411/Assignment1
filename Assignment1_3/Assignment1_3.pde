@@ -1,9 +1,11 @@
 PShape world;
 PShape russia;
 
+ArrayList<ArrayList<PShape>> countries = new ArrayList<ArrayList<PShape>>();
+
 void setup()
 {
-  size(950, 620);
+  size(600, 600);
   shapeMode(CORNER);
   world = loadShape("worldLow.svg");
   russia = world.getChild("RU");
@@ -12,12 +14,12 @@ void setup()
 
 void draw()
 {
-  shape(world, 0, 0, 950, 620);
+  shape(world, 0, 0, 750, 600);
   
   russia.disableStyle();
   fill(0, 51, 102);
   noStroke();
-  shape(russia, 0, 0, 950, 620);
+  shape(russia, 0, 0, 750, 600);
   
 }
 
