@@ -1,7 +1,4 @@
 PShape world;
-PShape russia;
-PShape ireland;
-PShape country;
 String[] Africa = {
   "DZ", "AO", "BJ", "BW", "BF", "BI", "CM", "CF", 
   "TD", "CD", "CG", "CI", "DJ", "EG", "EH", "GQ", "ER", "ET", 
@@ -10,43 +7,58 @@ String[] Africa = {
   "SN", "SL", "SO", "ZA", "SS", "SD", "SZ", "TZ", "TG", "TN", 
   "UG", "ZM", "ZW"
 };
+String[] China = {
+  "CN"
+};
+String[] India = {
+  "IN"
+};
+String[] Korea_Japan = {
+  "KP", "KR", "JP"
+};
+String[] centralAmerica = {
+  "BZ", "CR", "SV", "GT", "HN", "NI", "PA"
+}; 
+String[] northAmerica = {
+  "CA", "US", "GL", "MX", "BS", "CU", 
+  "DO", "HT", "JM", "PR"
+};
 
-ArrayList<PShape> countries = new ArrayList<PShape>();
+String[] southAmerica = {
+  "AR", "BO", "BR", "CL", "CO", "EC", "GF", "GY", 
+  "FK", "PY", "PE", "SR", "TT", "UY", "VE"
+};
+
 
 void setup()
 {
   size(600, 600);
   shapeMode(CORNER);
   world = loadShape("worldLow.svg");
-  russia = world.getChild("RU");
-  ireland = world.getChild("IE");
-
-  countries.add(russia);
-  countries.add(ireland);
 }
 
 void draw()
 {
   shape(world, 0, 0, 750, 600);
 
+  regionColouring(India, color(125, 125, 125));
+  regionColouring(China, color(255, 0, 0));
+  regionColouring(Korea_Japan, color(0, 0, 255));
+  regionColouring(centralAmerica, color(125, 0, 0));
+  regionColouring(northAmerica, color(0, 255, 0));
+  regionColouring(southAmerica, color(125, 255, 125));
+  regionColouring(Africa, color(255, 0, 255));
+}
 
-  for (int i = 0; i < countries.size (); i++)
+void regionColouring(String region[], int c)
+{
+  for (int i = 0; i < region.length; ++i)
   {
-    countries.get(i).disableStyle();
-    fill(0, 51, 102);
-    noStroke();
-    shape(countries.get(i), 0, 0, 750, 600);
-    println(i);
-  }
-
-  for (int i = 0; i < Africa.length; ++i)
-  {
-    country = world.getChild(Africa[i]);
+    PShape country = world.getChild(region[i]);
     country.disableStyle();
-    fill(255, 0, 255);
+    fill(c);
     noStroke();
     shape(country, 0, 0, 750, 600);
-    println(Africa[i]);
   }
 }
 
