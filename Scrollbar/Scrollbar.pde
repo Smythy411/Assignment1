@@ -11,7 +11,6 @@ void setup()
 void draw()
 {
   background(0);
-  rect(30, 20, 55, 20);
   s.display();
   s.update();
 }

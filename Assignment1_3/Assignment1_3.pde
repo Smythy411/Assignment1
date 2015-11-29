@@ -1,4 +1,5 @@
 PShape world;
+Sbar s;
 
 String[] Africa = {
   "DZ", "AO", "BJ", "BW", "BF", "BI", "CM", "CF", 
@@ -7,6 +8,13 @@ String[] Africa = {
   "ML", "MR", "MA", "MG", "MR", "MZ", "NA", "NE", "NG", "RW", 
   "SN", "SL", "SO", "ZA", "SS", "SD", "SZ", "TZ", "TG", "TN", 
   "UG", "ZM", "ZW"
+};
+String[] Europe = {
+  "AL", "AM", "AT", "AZ", "BY", "BE", "BA", "BG", "HR", "CY", 
+  "CZ", "DK", "EE", "FI", "FR", "GE", "DE", "GR", "HU", "IS", 
+  "IE", "IT", "XK", "LV", "LT", "LU", "MK", "MD", "ME", "NL", 
+  "NO", "PL", "PL", "PT", "RO", "RS", "SK", "SI", "ES", "SE", 
+  "CH", "TR", "UA", "GB", "SJ"
 };
 String[] China = {
   "CN"
@@ -22,10 +30,10 @@ String[] southeastAsia = {
   "MY", "MM", "NP", "PH", "TH", "TW", "VN"
 };
 String[] Russia_CentralAsia = {
-  "RU", "KZ", "KG", "TJ", "TM", "UZ"
+  "RU", "KZ", "KG", "TJ", "TM", "UZ", "MN",
 };
 String[] middleEast = {
-  "CY", "IR", "IQ", "IL", "JO", "KW", "LB", "OM", 
+  "IR", "IQ", "IL", "JO", "KW", "LB", "OM", 
   "QA", "SA", "SY", "AE", "YE", "PK", "AF"
 };
 String[] centralAmerica = {
@@ -48,8 +56,11 @@ String[] Oceania = {
 void setup()
 {
   size(600, 600);
+  noStroke();
   shapeMode(CORNER);
   world = loadShape("worldLow.svg");
+  
+   s = new SBar(0, height - 50, width, height - 20);
 }
 
 void draw()
@@ -66,6 +77,7 @@ void draw()
   regionColouring(northAmerica, color(0, 255, 0));
   regionColouring(southAmerica, color(125, 255, 125));
   regionColouring(Africa, color(255, 0, 255));
+  regionColouring(Europe, color(56, 210, 100));
   regionColouring(Oceania, color(0, 125, 255));
 }
 
