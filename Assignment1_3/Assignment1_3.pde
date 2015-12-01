@@ -23,24 +23,27 @@ void draw()
   background(0);
   shape(world, 0, 0, 750, 600);
 
+  s.display();
+  s.update();
+  int sPos = s.sliderXPos;
+
   Table regions = loadTable("Regions.csv", "header");
+  Table regionData = loadTable("PopByRegion.csv", "header");
+
 
   for (int i = 0; i < Regions.length; i++)
   {
-    tableRegionColouring(regions, Regions[i], color(i + 1, (i + 1) * 10, (i + 1) * 20));
+    tableRegionColouring(regions, Regions[i], sPos);
   }
-
-  s.display();
-  s.update();
 }
 
-void tableRegionColouring(Table table, String region, int c)
+void tableRegionColouring(Table table, String region, int sPos)
 {
   for (int i = 0; i < table.getRowCount (); i++)
   {
     PShape country = world.getChild(table.getString(i, region));
     country.disableStyle();
-    fill(c);
+    fill(0.5 * sPos, 0, 0);
     noStroke();
     shape(country, 0, 0, 750, 600);
   }
