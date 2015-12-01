@@ -44,7 +44,7 @@ void tableRegionColouring(Table table, String region, int sPos)
     PShape country = world.getChild(table.getString(i, region));
     country.disableStyle();
     fill(0.5 * sPos, 0, 0);
-    noStroke();
+    stroke(0, 255, 255);
     shape(country, 0, 0, 750, 600);
   }
 }
