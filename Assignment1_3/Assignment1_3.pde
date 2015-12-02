@@ -30,7 +30,6 @@ void draw()
   Table regions = loadTable("Regions.csv", "header");
   Table regionData = loadTable("PopByRegion.csv", "header");
 
-
   for (int i = 0; i < Regions.length; i++)
   {
     tableRegionColouring(regions, Regions[i], sPos);
