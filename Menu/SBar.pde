@@ -13,7 +13,7 @@ class SBar
     barHeight = bh;
     sliderXPos = bxp;
     sliderYPos = byp;
-    sliderWidth = sliderXPos + 20;
+    sliderWidth = sliderXPos - 20;
     sliderHeight = bh;
   }
   void update()
@@ -21,7 +21,7 @@ class SBar
 
     if (mousePressed && mouseButton == LEFT)
     {
-      sliderXPos = mouseX - 10;
+      sliderXPos = mouseX - 20;
     }
    /*if (mouseX > sliderXPos && mouseX < sliderXPos + sliderWidth &&
       mouseY > sliderYPos && mouseY < sliderYPos + sliderHeight)

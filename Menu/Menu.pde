@@ -6,6 +6,12 @@ String[] Regions = {
   "Southeastern Asia", "Korea & Japan", "Oceania"
 };
 
+color[] regionColours = {
+  color(164, 196, 0), color(0, 138, 0), color(0, 171, 169), color(27, 161, 226),
+  color(106, 0, 255), color(170, 0, 255), color(216, 0, 115), color(250, 104, 0),
+  color(229, 20, 0), color(227, 200, 0), color(130, 90, 44), color(100, 118, 135)
+};
+
 SBar s;
 Graph singaporeGraph, regionGraph;
 
@@ -20,8 +26,11 @@ void setup()
 
   Table singaporePop = loadTable("singaporePopulation.csv", "header");
   Table regionPop = loadTable("PopByRegion.csv", "header");
+  
+  float sBarx1 = width * 0.1;
+  float sBarx2 = width - (2 * sBarx1);
 
-  s = new SBar(0, height - 50, width, height - 20);
+  s = new SBar((int)sBarx1, height - 50, (int)sBarx2, height - 20);
   singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
   regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
 }
@@ -74,7 +83,7 @@ void draw()
     for (int i = 0; i < Regions.length; i++)
     {
       c = color(random(0, 255), random(0, 255), random(0, 255));
-      regionGraph.drawGraph(Regions[i], c);
+      regionGraph.drawGraph(Regions[i], regionColours[i]);
     }
     regionGraph.drawBorders(0, 2700, 1700, 2100);
     break;
@@ -85,7 +94,7 @@ void draw()
 
     s.display();
     s.update();
-    int sPos = s.sliderXPos;
+    int sPos = s.sliderXPos - 20;
 
     for (int i = 0; i < Regions.length; i++)
     {
