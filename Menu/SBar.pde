@@ -38,4 +38,3 @@ class SBar
     rect(sliderXPos, sliderYPos, sliderWidth, sliderYPos - barHeight);
   }
 }
-
