@@ -13,7 +13,7 @@ void setup()
 
   Table table = loadTable("population.csv", "header");
   
-  g = new Graph(table, map(56, 0, 56, 0, 5535002), "total_population");
+  g = new Graph(table, map(56, 0, 56, 0, 5535002));
 
   println(table.getRowCount() + " total rows in table"); 
 
@@ -27,6 +27,8 @@ void setup()
     println(totalPopulation + " at year " + year);
   }
   
-  g.drawGraph();
+  color c = color(0, 255, 0);
+  g.drawGraph("total_population", c);
+  g.drawBorders();
 }//End setup()
 

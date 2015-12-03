@@ -7,6 +7,7 @@ String[] Regions = {
 };
 
 SBar s;
+Graph singaporeGraph, regionGraph;
 
 void setup()
 {
@@ -17,7 +18,12 @@ void setup()
   shapeMode(CORNER);
   world = loadShape("worldLow.svg");
 
+  Table singaporePop = loadTable("singaporePopulation.csv", "header");
+  Table regionPop = loadTable("PopByRegion.csv", "header");
+
   s = new SBar(0, height - 50, width, height - 20);
+  singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
+  regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
 }
 
 int option = 0;
@@ -26,12 +32,7 @@ void draw()
 {
   background(0);
 
-  Table singaporePop = loadTable("singaporePopulation.csv", "header");
-  Table regionPop = loadTable("PopByRegion.csv", "header");
   Table regions = loadTable("Regions.csv", "header");
-
-  float border = height * 0.1f;
-  float horizontalRange = width - (border * 2.0f);
 
   switch(option)
   {
@@ -62,104 +63,20 @@ void draw()
   case 1:
     println("One");
 
-    stroke(255, 0, 255);
-
-    float singaporeLineWidth = horizontalRange / (singaporePop.getRowCount() - 1);
-
-    float singaporeDataRange = map(56, 0, 56, 0, 5535002);
-    float singaporeVerticaleRange = height - (border * 2.0f);
-    float singaporeVerticleScale = singaporeVerticaleRange / singaporeDataRange; 
-
-    for (int i = 0; i < singaporePop.getRowCount () - 1; i++)
-    {
-      float x1 = border + (i * singaporeLineWidth);
-      float y1 = (height - border) - singaporePop.getInt(i, "total_population") * singaporeVerticleScale;
-
-      float x2 = border + (i + 1) * singaporeLineWidth;
-      float y2 = (height - border) - singaporePop.getInt(i +1, "total_population") * singaporeVerticleScale;
-
-      stroke(0, 255, 0);
-      line(x1, y1, x2, y2);
-      stroke(255, 0, 255);
-    }//End for
-
-    line(border, height - border, width - border, height - border);
-    line(border, height - border, border, border);
-
-    for (int i = 0; i < singaporePop.getRowCount (); i += 5)
-    {
-      float x = border + (i * singaporeLineWidth);
-      float y = height - border;
-      float tick = border * 0.1f;
-      line(x, y, x, y + tick);
-      textAlign(CENTER, CENTER);
-      text((int)map(i, 0, 55, 1960, 2015), x, y + (border * 0.5));
-    }//End for
-
-    for (int i = 0; i < singaporePop.getRowCount (); i += 5)
-    {
-      float x = border;
-      float y = height - (border + (i * singaporeLineWidth));
-      float tick = border * 0.1f;
-      line(x, y, x - tick, y);
-      fill(255);
-      textAlign(RIGHT, BOTTOM);
-      textSize(10);
-      text((int)map(i, 0, 56, 0, 5535002), x - (border * 0.2), y + (border * 0.15));
-    }//End for
+    color c = color(0, 255, 0);
+    singaporeGraph.drawGraph("total_population", c);
+    singaporeGraph.drawBorders(56, 5535002, 1960, 2015);
 
     break;
   case 2:
     println("Two");
 
-    float regionLineWidth = horizontalRange / (regionPop.getRowCount());
-
-    float regionDataRange = map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767);
-    float regionVerticaleRange = height - (border * 2.0f);
-    float regionVerticleScale = regionVerticaleRange / regionDataRange; 
-
-    for (int j = 0; j < Regions.length; j++)
+    for (int i = 0; i < Regions.length; i++)
     {
-      color c = color(random(0, 255), random(0, 255), random(0, 255));
-      for (int i = 0; i < regionPop.getRowCount () - 1; i++)
-      {
-        float x1 = border + (i * regionLineWidth);
-        float y1_1 = (height - border) - regionPop.getInt(i, Regions[j]) * regionVerticleScale;
-
-        float x2 = border + (i + 1) * regionLineWidth;
-        float y2_1 = (height - border) - regionPop.getInt(i +1, Regions[j]) * regionVerticleScale;
-
-        stroke(c);
-        line(x1, y1_1, x2, y2_1);
-        stroke(255, 0, 0);
-      }//End for
+      c = color(random(0, 255), random(0, 255), random(0, 255));
+      regionGraph.drawGraph(Regions[i], c);
     }
-
-    line(border, height - border, width - border, height - border);
-    line(border, height - border, border, border);
-
-    for (float i = 0; i < regionPop.getRowCount (); i += 5)
-    {
-      float x = border + (i * regionLineWidth);
-      float y = height - border;
-      float tick = border * 0.1f;
-      line(x, y, x, y + tick);
-      textAlign(CENTER, CENTER);
-      text((int)map(i, 0, regionPop.getRowCount() - 1, 1700, 2100), x, y + (border * 0.5));
-    }//End for
-
-    for (int i = 0; i < regionPop.getRowCount () + 1; i += 1)
-    {
-      float x = border;
-      float y = height - (border + (i * regionLineWidth));
-      float tick = border * 0.1f;
-      line(x, y, x - tick, y);
-      fill(255);
-      textAlign(RIGHT, BOTTOM);
-      textSize(10);
-      text((int)map(i, 0, regionPop.getRowCount() - 1, 0, 2700), x - (border * 0.2), y + (border * 0.15));
-    }//End for
-
+    regionGraph.drawBorders(0, 2700, 1700, 2100);
     break;
   case 3:
     println("Three");

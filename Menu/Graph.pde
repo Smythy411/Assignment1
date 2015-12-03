@@ -19,6 +19,8 @@ class Graph
 
   void drawGraph(String s, color c)
   {
+    int counter = 0;
+
     for (int i = 0; i < table.getRowCount () - 1; i++)
     {
       float x1 = border + (i * lineWidth);
@@ -33,7 +35,7 @@ class Graph
     }//End for
   }
 
-  void drawBorders()
+  void drawBorders(int bottomYExtreme, int topYExtreme, int leftXExtreme, int rightXExtreme)
   {
 
     line(border, height - border, width - border, height - border);
@@ -46,7 +48,7 @@ class Graph
       float tick = border * 0.1f;
       line(x, y, x, y + tick);
       textAlign(CENTER, CENTER);
-      text((int)map(i, 0, 55, 1960, 2015), x, y + (border * 0.5));
+      text((int)map(i, 0, table.getRowCount(), leftXExtreme, rightXExtreme), x, y + (border * 0.5));
     }//End for
 
     for (int i = 0; i < table.getRowCount (); i += 5)
@@ -55,9 +57,10 @@ class Graph
       float y = height - (border + (i * lineWidth));
       float tick = border * 0.1f;
       line(x, y, x - tick, y);
+      fill(255);
       textAlign(RIGHT, BOTTOM);
       textSize(10);
-      text((int)map(i, 0, 56, 0, 5535002), x - (border * 0.2), y + (border * 0.15));
+      text((int)map(i, 0, table.getRowCount(), bottomYExtreme, topYExtreme), x - (border * 0.2), y + (border * 0.15));
     }//End for
   }
 }
