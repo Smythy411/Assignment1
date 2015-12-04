@@ -7,8 +7,8 @@ String[] Regions = {
 };
 
 color[] regionColours = {
-  color(164, 196, 0), color(0, 138, 0), color(0, 171, 169), color(27, 161, 226),
-  color(106, 0, 255), color(170, 0, 255), color(216, 0, 115), color(250, 104, 0),
+  color(164, 196, 0), color(0, 138, 0), color(0, 171, 169), color(27, 161, 226), 
+  color(106, 0, 255), color(170, 0, 255), color(216, 0, 115), color(250, 104, 0), 
   color(229, 20, 0), color(227, 200, 0), color(130, 90, 44), color(100, 118, 135)
 };
 
@@ -75,12 +75,13 @@ void draw()
 
     break;
   case 2:
-    println("Two");
+    //println("Two");
 
     for (int i = 0; i < Regions.length; i++)
     {
       c = color(random(0, 255), random(0, 255), random(0, 255));
       regionGraph.drawGraph(Regions[i], regionColours[i]);
+      println(Regions[i]);
     }
     regionGraph.drawBorders(0, 2700, 1700, 2100);
     break;
@@ -95,7 +96,7 @@ void draw()
 
     for (int i = 0; i < Regions.length; i++)
     {
-      tableRegionColouring(regions, Regions[i], sPos);
+      tableRegionColouring(regions, Regions[i], regionColours[i], sPos);
     }
 
 
@@ -115,13 +116,13 @@ void keyPressed()
   //println(option);
 }
 
-void tableRegionColouring(Table table, String region, int sPos)
+void tableRegionColouring(Table table, String region, color c, int sPos)
 {
   for (int i = 0; i < table.getRowCount (); i++)
   {
     PShape country = world.getChild(table.getString(i, region));
     country.disableStyle();
-    fill(0.5 * sPos, 0, 0);
+    fill(c, map(sPos, 0, width, 0, 255));
     stroke(0, 255, 255);
     shape(country, 0, 0, 750, 600);
   }
