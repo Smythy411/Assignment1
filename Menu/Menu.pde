@@ -26,11 +26,8 @@ void setup()
 
   Table singaporePop = loadTable("singaporePopulation.csv", "header");
   Table regionPop = loadTable("PopByRegion.csv", "header");
-  
-  float sBarx1 = width * 0.1;
-  float sBarx2 = width - (2 * sBarx1);
 
-  s = new SBar((int)sBarx1, height - 50, (int)sBarx2, height - 20);
+  s = new SBar(0, height - 50, width, height - 20);
   singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
   regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
 }
@@ -92,9 +89,9 @@ void draw()
 
     shape(world, 0, 0, 750, 600);
 
-    s.display();
     s.update();
-    int sPos = s.sliderXPos - 20;
+    s.display();
+    int sPos = s.sliderXPos;
 
     for (int i = 0; i < Regions.length; i++)
     {

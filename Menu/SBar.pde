@@ -13,7 +13,7 @@ class SBar
     barHeight = bh;
     sliderXPos = bxp;
     sliderYPos = byp;
-    sliderWidth = sliderXPos - 20;
+    sliderWidth = sliderXPos + 10;
     sliderHeight = bh;
   }
   void update()
@@ -21,12 +21,12 @@ class SBar
 
     if (mousePressed && mouseButton == LEFT)
     {
-      sliderXPos = mouseX - 20;
+      sliderXPos = mouseX - (sliderWidth / 2);
     }
-   /*if (mouseX > sliderXPos && mouseX < sliderXPos + sliderWidth &&
-      mouseY > sliderYPos && mouseY < sliderYPos + sliderHeight)
+    if (sliderXPos == barXPos)
     {
-    }*/
+      sliderXPos = barXPos;
+    }
   }
 
   void display()
@@ -36,5 +36,6 @@ class SBar
     rect(barXPos, barYPos, barWidth, barYPos - barHeight);
     fill(255, 0, 255);
     rect(sliderXPos, sliderYPos, sliderWidth, sliderYPos - barHeight);
+    text((int)map(sliderXPos, 0, width, 1700, 2100), barWidth / 2, barYPos - 30);
   }
 }
