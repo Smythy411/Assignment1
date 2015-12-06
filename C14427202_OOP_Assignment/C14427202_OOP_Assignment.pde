@@ -61,8 +61,14 @@ void draw()
   case 2:
     println("Two");
 
+
+
     for (int i = 0; i < Regions.length; i++)
     {
+      fill(regionColours[i]);
+      textSize(10);
+      textAlign(CENTER);
+      text(Regions[i], width / 4, (width * 0.2f) + 10 * i);
       regionGraph.drawGraph("World Population Growth", Regions[i], regionColours[i]);
     }
     regionGraph.drawBorders(0, 2700, 1700, 2100);

@@ -21,6 +21,7 @@ class Graph
   {
     textAlign(CENTER);
     textSize(32);
+    fill(255);
     text(header, width / 2, border - 10);
 
     int counter = 0;
