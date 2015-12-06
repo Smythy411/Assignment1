@@ -21,7 +21,7 @@ class SBar
 
     if (mousePressed && mouseButton == LEFT)
     {
-      sliderXPos = mouseX - (sliderWidth / 2);
+      sliderXPos = constrain(mouseX - (sliderWidth / 2), 0, width);
     }
     if (sliderXPos == barXPos)
     {
@@ -33,6 +33,7 @@ class SBar
   {
     noStroke();
     textSize(32);
+    textAlign(CENTER);
     fill(0, 255, 255);
     rect(barXPos, barYPos, barWidth, barYPos - barHeight);
     fill(255, 0, 255);
