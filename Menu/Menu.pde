@@ -17,19 +17,15 @@ Graph singaporeGraph, regionGraph;
 
 void setup()
 {
-  size(600, 600);
+  size(displayWidth, displayHeight);
   fill(255);
 
   noStroke();
   shapeMode(CORNER);
   world = loadShape("worldLow.svg");
 
-  Table singaporePop = loadTable("singaporePopulation.csv", "header");
-  Table regionPop = loadTable("PopByRegion.csv", "header");
-
   s = new SBar(0, height - 50, width, height - 20);
-  singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
-  regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
+  
 }
 
 int option = 0;
@@ -38,7 +34,12 @@ void draw()
 {
   background(0);
 
+  Table singaporePop = loadTable("singaporePopulation.csv", "header");
+  Table regionPop = loadTable("PopByRegion.csv", "header");
   Table regions = loadTable("Regions.csv", "header");
+  
+  singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
+  regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
 
   switch(option)
   {
@@ -75,28 +76,25 @@ void draw()
 
     break;
   case 2:
-    //println("Two");
+    println("Two");
 
     for (int i = 0; i < Regions.length; i++)
     {
-      c = color(random(0, 255), random(0, 255), random(0, 255));
       regionGraph.drawGraph(Regions[i], regionColours[i]);
-      println(Regions[i]);
     }
     regionGraph.drawBorders(0, 2700, 1700, 2100);
     break;
   case 3:
-    println("Three");
+    // println("Three");
 
-    shape(world, 0, 0, 750, 600);
+    shape(world, 0, 0, displayWidth + 350, displayHeight);
 
     s.update();
-    s.display();
-    int sPos = s.sliderXPos;
+    int year = s.display();
 
     for (int i = 0; i < Regions.length; i++)
     {
-      tableRegionColouring(regions, Regions[i], regionColours[i], sPos);
+      tableRegionColouring(regions, regionPop, Regions[i], regionColours[i], year);
     }
 
 
@@ -116,15 +114,18 @@ void keyPressed()
   //println(option);
 }
 
-void tableRegionColouring(Table table, String region, color c, int sPos)
+void tableRegionColouring(Table table, Table regionTable, String region, color c, int year)
 {
   for (int i = 0; i < table.getRowCount (); i++)
   {
+    int rowLocation = (int)map(year, 1700, 2100, 0, regionTable.getRowCount());
     PShape country = world.getChild(table.getString(i, region));
+    
     country.disableStyle();
-    fill(c, map(sPos, 0, width, 0, 255));
+
+    fill(c, map(regionTable.getInt(rowLocation, region), 0, 2700, 50, 255));
     stroke(0, 255, 255);
-    shape(country, 0, 0, 750, 600);
+    shape(country, 0, 0, displayWidth + 350, displayHeight);
   }
 }
 

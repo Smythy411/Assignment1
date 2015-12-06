@@ -29,13 +29,30 @@ class SBar
     }
   }
 
-  void display()
+  int display()
   {
     noStroke();
+    textSize(32);
     fill(0, 255, 255);
     rect(barXPos, barYPos, barWidth, barYPos - barHeight);
     fill(255, 0, 255);
     rect(sliderXPos, sliderYPos, sliderWidth, sliderYPos - barHeight);
-    text((int)map(sliderXPos, 0, width, 1700, 2100), barWidth / 2, barYPos - 30);
+    int temp = (int)map(sliderXPos, 0, width, 1700, 2100);
+    temp = floored(temp);
+    text(temp, barWidth / 2, barYPos - 30);
+    return temp;
+  }
+
+  int floored(int n)
+  {
+    for (int i = 0; i < 10; i++)
+    {
+      if ( (n - i) % 10 == 0)
+      {
+        n = n - i;
+      }
+    }
+    return n;
   }
 }
+
