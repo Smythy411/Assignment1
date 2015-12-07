@@ -1,5 +1,6 @@
 class Menu
 {
+  //displayMenu() Draws the menu
   void displayMenu()
   {
     textSize(32);
@@ -19,8 +20,11 @@ class Menu
     fill(0, 255, 0);
     text("Press '0' to return", width - width / 4, height - height / 4);
     fill(0);
-  }
-
+  }// End displayMenu()
+  
+  //drawOption() Draws the specific menu options
+  //Paramters define size of the menu option and which
+  //graph it will display when selected
   void drawOption(float x, float y, float xWidth, float yWidth, int o)
   {
     fill(0);
@@ -33,14 +37,16 @@ class Menu
       if (mousePressed && mouseButton == LEFT)
       {
         option = o;
-      }
-    }
-  }
+      }//End inner if
+    }//End outer if
+  }//End drawOption()
 
+//mouseOver() displays to the user which menu option they've mouse over
+//Parameters simply draw random lines within the option
   void mouseOver(float a, float b, float c, float d)
   {
     fill(0, 0, 255);
     line(a, b, c, d);
-  }
-}
+  }//End mouseOver()
+}//End Menu
 

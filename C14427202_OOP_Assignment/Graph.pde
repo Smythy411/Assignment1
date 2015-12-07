@@ -5,7 +5,8 @@ class Graph
   float horizontalRange, lineWidth;
   float dataRange;
   float verticleRange, verticleScale;
-
+  
+  //Graph Constructor
   Graph(Table t, float dR)
   {
     this.table = t;
@@ -15,16 +16,17 @@ class Graph
     lineWidth = horizontalRange / (table.getRowCount());
     verticleRange = height - (border * 2.0f);
     verticleScale = verticleRange / dataRange;
-  }
-
+  }// End Graph Constructor
+  
+  //drawGraph() Draws a line graph, passes in a string for the header at the top of the screen,
+  //a string to access the table column of a region
+  //and a colour variable to colour the line graph
   void drawGraph(String header, String s, color c)
   {
     textAlign(CENTER);
     textSize(32);
     fill(255);
     text(header, width / 2, border - 10);
-
-    int counter = 0;
 
     for (int i = 0; i < table.getRowCount () - 1; i++)
     {
@@ -38,8 +40,10 @@ class Graph
       line(x1, y1, x2, y2);
       stroke(255, 0, 255);
     }//End for
-  }
-
+  }//End drawGraph()
+  
+  //drawBorders() Draws the borders (or axis) of the graph.
+  //Paramaters define the range by which to map them to.
   void drawBorders(int bottomYExtreme, int topYExtreme, int leftXExtreme, int rightXExtreme)
   {
 
@@ -55,13 +59,14 @@ class Graph
       textAlign(CENTER, CENTER);
       textSize(10);
       text((int)map(i, 0, table.getRowCount() -1, leftXExtreme, rightXExtreme), x, y + (border * 0.5));
-
+      
+      //Fixes a problem I had where the borders would extend to far
       if (i == table.getRowCount() - 1)
       {
         stroke(0);
         line(x, y, x + border, y);
         stroke(255, 0, 255);
-      }
+      }//End if
     }//End for
 
     for (int i = 0; i < table.getRowCount (); i += 5)
@@ -74,6 +79,6 @@ class Graph
       textAlign(RIGHT, BOTTOM);
       text((int)map(i, 0, table.getRowCount() -1, bottomYExtreme, topYExtreme), x - (border * 0.2), y + (border * 0.15));
     }//End for
-  }
-}
+  }//End drawBorders()
+}//End Graph
 
