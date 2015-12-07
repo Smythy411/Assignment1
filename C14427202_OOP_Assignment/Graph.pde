@@ -8,8 +8,8 @@ class Graph
 
   Graph(Table t, float dR)
   {
-    table = t;
-    dataRange = dR;
+    this.table = t;
+    this.dataRange = dR;
     border = height * 0.1f;
     horizontalRange = width - (border * 2.0f);
     lineWidth = horizontalRange / (table.getRowCount());

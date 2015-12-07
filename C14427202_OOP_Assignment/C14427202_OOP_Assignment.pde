@@ -26,6 +26,7 @@ void setup()
   world = loadShape("worldLow.svg");
 
   s = new SBar(0, height - 50, width, height - 20);
+  m = new Menu();
 }
 
 int option = 0;
@@ -38,7 +39,6 @@ void draw()
   Table regionPop = loadTable("PopByRegion.csv", "header");
   Table regions = loadTable("Regions.csv", "header");
 
-  m = new Menu();
   singaporeGraph = new Graph(singaporePop, map(56, 0, 56, 0, 5535002));
   regionGraph = new Graph(regionPop, map(regionPop.getRowCount(), 0, regionPop.getRowCount(), 0, 2767));
 
@@ -60,8 +60,6 @@ void draw()
     break;
   case 2:
     println("Two");
-
-
 
     for (int i = 0; i < Regions.length; i++)
     {
@@ -97,7 +95,7 @@ void draw()
 
 void keyPressed()
 {
-  if (key >= '0' && key <='9')
+  if (key >= '0' && key <='3')
   {
     option = key - '0';
   }

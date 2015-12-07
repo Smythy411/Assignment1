@@ -7,10 +7,10 @@ class SBar
 
   SBar(int bxp, int byp, int bw, int bh)
   {
-    barXPos = bxp;
-    barYPos = byp;
-    barWidth = bw;
-    barHeight = bh;
+    this.barXPos = bxp;
+    this.barYPos = byp;
+    this.barWidth = bw;
+    this.barHeight = bh;
     sliderXPos = bxp;
     sliderYPos = byp;
     sliderWidth = sliderXPos + 10;
@@ -18,7 +18,6 @@ class SBar
   }
   void update()
   {
-
     if (mousePressed && mouseButton == LEFT)
     {
       sliderXPos = constrain(mouseX - (sliderWidth / 2), 0, width);

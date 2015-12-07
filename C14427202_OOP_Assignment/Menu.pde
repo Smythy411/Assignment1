@@ -11,6 +11,10 @@ class Menu
     if ((mouseX > 0) && (mouseX < width / 2) && (mouseY > 0) && (mouseY < height / 2))
     {
       mouseOver(random(0, width / 2), random(0, height / 2), random(0, width / 2), random(0, height / 2));
+      if (mousePressed && mouseButton == LEFT)
+      {
+        option = 1;
+      }
     }
     text("Option 1", width / 4, height / 4);
 
@@ -20,6 +24,10 @@ class Menu
     if ((mouseX > width / 2) && (mouseX < width) && (mouseY > 0) && (mouseY < height / 2))
     {
       mouseOver(random(width / 2, width), random(0, height / 2), random(width / 2, width), random(0, height / 2));
+      if (mousePressed && mouseButton == LEFT)
+      {
+        option = 2;
+      }
     }
     text("Option 2", width - width / 4, height / 4);
 
@@ -29,6 +37,10 @@ class Menu
     if ((mouseX > 0) && (mouseX < width / 2) && (mouseY > height / 2) && (mouseY < height))
     {
       mouseOver(random(0, width / 2), random(height / 2, height), random(0, width / 2), random(height / 2, height));
+      if (mousePressed && mouseButton == LEFT)
+      {
+        option = 3;
+      }
     }
     text("Option 3", width / 4, height - height / 4);
 
