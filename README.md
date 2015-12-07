@@ -12,17 +12,17 @@ The program has four screens in total
 
 ![Sketch](https://github.com/Smythy411/Assignment1/blob/master/images/Menu.PNG)
 
-*Graph 1 : Singapore (Localized data)
+* Graph 1 : Singapore (Localized data)
 ... A line graph showing the population growth in Singapore in recent years. The purpose of this graph is to show how population is steadily growing in a small(ish) subset.
 
 ![Sketch](https://github.com/Smythy411/Assignment1/blob/master/images/Graph1.PNG)
 
-*Graph 2 : World Population Growth
+* Graph 2 : World Population Growth
 ... Multiple line graphs showing population growth in recent years and projected population growth. The purpose of this graph is to show how how each region of the world correlates with each other, and hopefully graphically show the issue of how ridiculous our population is set to grow in the next decade.
 
 ![Sketch](https://github.com/Smythy411/Assignment1/blob/master/images/Graph2.PNG)
 
-*Graph 3 : World Map
+* Graph 3 : World Map
 ... Shows population growth visually on a world map. The user can change the year using the scrollbar at the bottom to visually show the population growth.
 
 ![Sketch](https://github.com/Smythy411/Assignment1/blob/master/images/Graph3.PNG)
