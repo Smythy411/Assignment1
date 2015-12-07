@@ -4,44 +4,14 @@ class Menu
   {
     textSize(32);
     textAlign(CENTER);
-
-    stroke(255, 0, 255);
-    rect(0, 0, width / 2, height / 2);
-    fill(0, 255, 0);
-    if ((mouseX > 0) && (mouseX < width / 2) && (mouseY > 0) && (mouseY < height / 2))
-    {
-      mouseOver(random(0, width / 2), random(0, height / 2), random(0, width / 2), random(0, height / 2));
-      if (mousePressed && mouseButton == LEFT)
-      {
-        option = 1;
-      }
-    }
+    
+    drawOption(0, 0, width / 2, height / 2, 1);
     text("Option 1", width / 4, height / 4);
-
-    fill(0);
-    rect(width / 2, 0, width, height / 2);
-    fill(0, 255, 0);
-    if ((mouseX > width / 2) && (mouseX < width) && (mouseY > 0) && (mouseY < height / 2))
-    {
-      mouseOver(random(width / 2, width), random(0, height / 2), random(width / 2, width), random(0, height / 2));
-      if (mousePressed && mouseButton == LEFT)
-      {
-        option = 2;
-      }
-    }
+    
+    drawOption(width / 2, 0, width, height / 2, 2);
     text("Option 2", width - width / 4, height / 4);
-
-    fill(0);
-    rect(0, height / 2, width / 2, height);
-    fill(0, 255, 0);
-    if ((mouseX > 0) && (mouseX < width / 2) && (mouseY > height / 2) && (mouseY < height))
-    {
-      mouseOver(random(0, width / 2), random(height / 2, height), random(0, width / 2), random(height / 2, height));
-      if (mousePressed && mouseButton == LEFT)
-      {
-        option = 3;
-      }
-    }
+    
+    drawOption(0, height / 2, width / 2, height, 3);
     text("Option 3", width / 4, height - height / 4);
 
     fill(0);
@@ -51,8 +21,25 @@ class Menu
     fill(0);
   }
 
+  void drawOption(float x, float y, float xWidth, float yWidth, int o)
+  {
+    fill(0);
+    stroke(255, 0, 255);
+    rect(x, y, xWidth, yWidth);
+    fill(0, 255, 0);
+    if ((mouseX > x) && (mouseX < xWidth) && (mouseY > y) && (mouseY < yWidth))
+    {
+      mouseOver(random(x, xWidth), random(y, yWidth), random(x, xWidth), random(y, yWidth));
+      if (mousePressed && mouseButton == LEFT)
+      {
+        option = o;
+      }
+    }
+  }
+
   void mouseOver(float a, float b, float c, float d)
   {
+    fill(0, 0, 255);
     line(a, b, c, d);
   }
 }
